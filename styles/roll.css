@@ -1,0 +1,76 @@
+/* styles/roll.css */
+
+/* Roll Dialog */
+.mazes-roll-dialog-window {
+    background: #111;
+    border: 1px solid #333;
+}
+.mazes-roll-dialog-window .dialog-content {
+    background: transparent;
+    padding: 16px;
+}
+.mazes-roll-dialog-window .dialog-buttons {
+    display: none;
+}
+.mazes-roll-dialog {
+    background: transparent;
+}
+.mazes-roll-dialog h2 {
+    font-family: var(--mazes-font-display);
+    color: var(--mazes-text);
+}
+.mazes-roll-dialog .roll-mode-btn:hover {
+    background: #444 !important;
+}
+.mazes-roll-dialog .roll-mode-btn:active {
+    background: #555 !important;
+}
+
+/* Chat Roll */
+.mazes-chat-roll {
+    background: #0a0a0a;
+    border-left: 3px solid #555;
+    padding: 8px 12px;
+    border-radius: 3px;
+    margin: 2px 0;
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.mazes-chat-roll .roll-title {
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+}
+.mazes-chat-roll .roll-mode {
+    font-size: 13px;
+    color: #aaa;
+}
+.mazes-chat-roll .roll-results {
+    font-size: 15px;
+    color: #ddd;
+}
+.mazes-chat-roll .roll-keys-crowns {
+    font-size: 14px;
+    color: #ffd700;
+}
+.mazes-chat-roll .roll-outcome {
+    font-family: var(--mazes-font-display);
+    font-size: 20px;
+    font-weight: bold;
+}
+.mazes-chat-roll .roll-outcome.critical {
+    color: #ffd700;
+}
+.mazes-chat-roll .roll-outcome.fumble {
+    color: #ff4444;
+}
+.mazes-chat-roll .roll-outcome.success {
+    color: #4caf50;
+}
+.mazes-chat-roll .roll-outcome.failure {
+    color: #ff6b6b;
+}
+.mazes-chat-roll .roll-total {
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+}

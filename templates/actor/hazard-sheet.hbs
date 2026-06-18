@@ -1,0 +1,125 @@
+{{!-- templates/actor/hazard-sheet.hbs --}}
+
+<div class="mazes-sheet hazard-sheet">
+    {{!-- Header --}}
+    <div class="sheet-header">
+        <div class="portrait-container">
+            <img class="portrait" src="{{actor.img}}" data-edit="img" width="80" height="80" alt="{{name}}">
+        </div>
+        <div class="header-fields">
+            <div class="field-row">
+                <label class="field-label">NAME</label>
+                <input class="actor-name-input" type="text" value="{{name}}" placeholder="Hazard Name">
+            </div>
+        </div>
+    </div>
+
+    {{!-- Resources Bar (always visible) --}}
+    <div class="resources-bar hazard-resources">
+        <div class="resource-square">
+            <label>DANGER</label>
+            <input class="resource-input" data-field="danger" type="number" value="{{system.danger}}" min="0">
+        </div>
+        <div class="resource-square">
+            <label>HEARTS</label>
+            <div class="resource-value">
+                <input class="resource-value-input" data-field="hearts" type="number" value="{{system.hearts.value}}" min="0">
+                <span>/</span>
+                <input class="resource-max-input" data-field="hearts" type="number" value="{{system.hearts.max}}" min="0">
+            </div>
+        </div>
+    </div>
+
+    {{!-- Vertical Tabs --}}
+    <div class="vertical-tabs">
+        {{#each tabs}}
+            <button class="tab-button {{#if (eq this.id ../activeTab)}}active{{/if}}" data-tab="{{this.id}}">
+                {{this.label}}
+            </button>
+        {{/each}}
+    </div>
+
+    {{!-- Tab Content --}}
+    <div class="tab-content">
+        {{!-- Sheet Tab – contains main content --}}
+        <div class="tab-pane {{#if (eq activeTab "sheet")}}active{{/if}}" data-tab="sheet">
+            <div class="hazard-main">
+                {{!-- Edges --}}
+                <div class="edges-section">
+                    <div class="edges-header">
+                        <span class="edges-label">EDGES</span>
+                        <span class="drop-hint">(Drag Edge items here)</span>
+                    </div>
+                    <div class="edges-grid edge-drop-zone">
+                        {{#each edges}}
+                            <div class="edge-item" data-id="{{this.id}}">
+                                <div class="edge-display">
+                                    <span class="edge-name">{{this.name}}</span>
+                                    <button class="edit-edge-btn" data-id="{{this.id}}" title="Edit Edge">✎</button>
+                                </div>
+                                <div class="item-description">
+                                    <div class="desc-toggle" data-target="edge-{{this.id}}">
+                                        <span class="desc-icon">▶</span> Description
+                                    </div>
+                                    <div class="desc-content-edge-{{this.id}}" style="display:none;">
+                                        {{{this.system.description}}}
+                                    </div>
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="edge-empty">Drop Edges here</div>
+                        {{/each}}
+                    </div>
+                </div>
+
+                {{!-- Description --}}
+                <div class="description-section">
+                    <label class="field-label">DESCRIPTION</label>
+                    <textarea class="hazard-description-editor" rows="8" style="width:100%; background: white; color: black;">{{system.description}}</textarea>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Conditions Tab --}}
+        <div class="tab-pane {{#if (eq activeTab "conditions")}}active{{/if}}" data-tab="conditions">
+            <div class="conditions-container">
+                <h2 class="conditions-title">Conditions</h2>
+                <div class="conditions-grid">
+                    {{!-- Row 1 --}}
+                    <div class="condition-square {{#if conditions.stressed}}active{{/if}}" data-key="stressed">
+                        <span class="condition-label">Stressed</span>
+                        <span class="condition-desc">No Key bonus. Disadvantaged on Books.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.tired}}active{{/if}}" data-key="tired">
+                        <span class="condition-label">Tired</span>
+                        <span class="condition-desc">Disadvantaged on Boots and Bones.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.hurt}}active{{/if}}" data-key="hurt">
+                        <span class="condition-label">Hurt</span>
+                        <span class="condition-desc">Disadvantaged on Blades.</span>
+                    </div>
+
+                    {{!-- Row 2 – Custom Conditions --}}
+                    <div class="custom-condition">
+                        <input class="custom-condition-name" data-index="1" type="text" value="{{conditions.custom1.name}}" placeholder="Condition Name">
+                        <div class="custom-condition-square">
+                            <textarea class="custom-condition-text" data-index="1" placeholder="Condition description...">{{conditions.custom1.text}}</textarea>
+                        </div>
+                    </div>
+                    <div class="custom-condition">
+                        <input class="custom-condition-name" data-index="2" type="text" value="{{conditions.custom2.name}}" placeholder="Condition Name">
+                        <div class="custom-condition-square">
+                            <textarea class="custom-condition-text" data-index="2" placeholder="Condition description...">{{conditions.custom2.text}}</textarea>
+                        </div>
+                    </div>
+                    <div class="custom-condition">
+                        <input class="custom-condition-name" data-index="3" type="text" value="{{conditions.custom3.name}}" placeholder="Condition Name">
+                        <div class="custom-condition-square">
+                            <textarea class="custom-condition-text" data-index="3" placeholder="Condition description...">{{conditions.custom3.text}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

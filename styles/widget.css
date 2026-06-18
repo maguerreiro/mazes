@@ -1,0 +1,122 @@
+/* styles/widget.css */
+
+/* The outer window is positioned by Foundry – we just style the content */
+.mazes-widget .window-content {
+    padding: 0 !important;
+    background: #0a0a0a;
+    color: var(--mazes-text);
+    overflow: hidden;            /* prevent content from overflowing */
+}
+
+.mazes-widget-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+}
+
+.widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: #111;
+    border-bottom: 1px solid #222;
+    cursor: default;
+    flex-shrink: 0;
+}
+.widget-title {
+    font-family: var(--mazes-font-display);
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: 0.5px;
+}
+.widget-toggle {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 4px;
+    transition: color 0.2s;
+    line-height: 1;
+}
+.widget-toggle:hover {
+    color: var(--mazes-text);
+}
+
+.widget-body {
+    padding: 10px 12px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    overflow-y: auto;           /* allow vertical scroll if needed */
+}
+
+.widget-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.widget-section .section-label {
+    font-family: var(--mazes-font-display);
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 0.5px;
+}
+.widget-control {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.widget-control .widget-btn {
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 3px;
+    color: var(--mazes-text);
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+    line-height: 1;
+}
+.widget-control .widget-btn:hover {
+    background: #333;
+    border-color: #555;
+}
+.widget-control .widget-btn:active {
+    background: #444;
+}
+.widget-control .widget-input {
+    background: var(--mazes-input-bg);
+    color: var(--mazes-input-text);
+    border: 1px solid #333;
+    border-radius: 3px;
+    width: 44px;
+    padding: 2px 2px;
+    text-align: center;
+    font-size: 13px;
+    height: 26px;
+}
+.widget-control .widget-input:focus {
+    border-color: #666;
+    outline: none;
+}
+.widget-status {
+    font-size: 11px;
+    color: #888;
+    margin-left: 4px;
+    font-style: italic;
+    min-width: 50px;
+}
+
+/* Minimized state – hide body */
+.mazes-widget-container.minimized .widget-body {
+    display: none;
+}

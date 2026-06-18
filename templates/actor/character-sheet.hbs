@@ -1,0 +1,267 @@
+{{!-- templates/actor/character-sheet.hbs --}}
+
+<div class="mazes-sheet character-sheet">
+    {{!-- Header --}}
+    <div class="sheet-header">
+        <div class="portrait-container">
+            <img class="portrait" src="{{actor.img}}" data-edit="img" width="80" height="80" alt="{{name}}">
+        </div>
+        <div class="header-fields">
+            <div class="field-row">
+                <label class="field-label">NAME</label>
+            </div>
+            <div class="field-row">
+                <input class="actor-name-input" type="text" value="{{name}}" placeholder="Character Name">
+            </div>
+            <div class="field-row">
+                <label class="field-label">CONCEPT</label>
+            </div>
+            <div class="field-row">
+                <input class="concept-input" type="text" value="{{system.concept}}" placeholder="Concept">
+            </div>
+        </div>
+    </div>
+
+    {{!-- Resources Bar (always visible) --}}
+    <div class="resources-bar">
+        <div class="resource-square">
+            <label>HEARTS</label>
+            <div class="resource-value">
+                <input class="resource-value-input" data-field="hearts" type="number" value="{{system.hearts.value}}" min="0">
+                <span>/</span>
+                <input class="resource-max-input" data-field="hearts" type="number" value="{{system.hearts.max}}" min="0">
+            </div>
+        </div>
+        <div class="resource-square">
+            <label>STARS</label>
+            <div class="resource-value">
+                <input class="resource-value-input" data-field="stars" type="number" value="{{system.stars.value}}" min="0">
+                <span>/</span>
+                <input class="resource-max-input" data-field="stars" type="number" value="{{system.stars.max}}" min="0">
+            </div>
+        </div>
+        <div class="resource-square">
+            <label>GEARS</label>
+            <input class="resource-input" data-field="gears" type="number" value="{{system.gears}}" min="0">
+        </div>
+        <div class="resource-square">
+            <label>LORE</label>
+            <input class="resource-input" data-field="lore" type="number" value="{{system.lore}}" min="0">
+        </div>
+        <div class="resource-square">
+            <label>WEALTH</label>
+            <input class="resource-input" data-field="wealth" type="number" value="{{system.wealth}}" min="0">
+        </div>
+        <div class="resource-square lifestyle">
+            <label>LIFESTYLE</label>
+            <input class="lifestyle-input" type="text" value="{{system.lifestyle}}" placeholder="copper/silver/gold">
+        </div>
+    </div>
+
+    {{!-- Vertical Tabs --}}
+    <div class="vertical-tabs">
+        {{#each tabs}}
+            <button class="tab-button {{#if (eq this.id ../activeTab)}}active{{/if}}" data-tab="{{this.id}}">
+                {{this.label}}
+            </button>
+        {{/each}}
+    </div>
+
+    {{!-- Tab Content --}}
+    <div class="tab-content">
+        {{!-- Sheet Tab – contains main layout --}}
+        <div class="tab-pane {{#if (eq activeTab "sheet")}}active{{/if}}" data-tab="sheet">
+            <div class="sheet-main">
+                {{!-- Left Column --}}
+                <div class="left-column">
+                    {{!-- ROLE --}}
+                    <div class="item-slot" data-slot="role">
+                        <div class="slot-label">ROLE</div>
+                        {{#if role}}
+                            <div class="item-display">
+                                <span class="item-name">{{role.name}} ({{dieSize}})</span>
+                                <button class="edit-desc-btn" data-slot="role" title="Edit Role">✎</button>
+                            </div>
+                            <div class="item-description">
+                                <div class="desc-toggle" data-target="role">
+                                    <span class="desc-icon">▶</span> Description
+                                </div>
+                                <div class="desc-content-role" style="display:none;">
+                                    {{{role.system.description}}}
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="item-display empty">Drop Role here</div>
+                        {{/if}}
+                    </div>
+
+                    {{!-- ASPECT --}}
+                    <div class="item-slot" data-slot="aspect">
+                        <div class="slot-label">ASPECT</div>
+                        {{#if aspect}}
+                            <div class="item-display">
+                                <span class="item-name">{{aspect.name}}</span>
+                                <button class="edit-desc-btn" data-slot="aspect" title="Edit Aspect">✎</button>
+                            </div>
+                            <div class="item-description">
+                                <div class="desc-toggle" data-target="aspect">
+                                    <span class="desc-icon">▶</span> Description
+                                </div>
+                                <div class="desc-content-aspect" style="display:none;">
+                                    {{{aspect.system.description}}}
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="item-display empty">Drop Aspect here</div>
+                        {{/if}}
+                    </div>
+
+                    {{!-- CLASS --}}
+                    <div class="item-slot" data-slot="class">
+                        <div class="slot-label">CLASS</div>
+                        {{#if class}}
+                            <div class="item-display">
+                                <span class="item-name">{{class.name}}</span>
+                                <button class="edit-desc-btn" data-slot="class" title="Edit Class">✎</button>
+                            </div>
+                            <div class="item-description">
+                                <div class="desc-toggle" data-target="class">
+                                    <span class="desc-icon">▶</span> Description
+                                </div>
+                                <div class="desc-content-class" style="display:none;">
+                                    {{{class.system.description}}}
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="item-display empty">Drop Class here</div>
+                        {{/if}}
+                    </div>
+
+                    {{!-- EDGE --}}
+                    <div class="item-slot" data-slot="edge">
+                        <div class="slot-label">EDGE</div>
+                        {{#if edge}}
+                            <div class="item-display">
+                                <span class="item-name">{{edge.name}}</span>
+                                <button class="edit-desc-btn" data-slot="edge" title="Edit Edge">✎</button>
+                            </div>
+                            <div class="item-description">
+                                <div class="desc-toggle" data-target="edge">
+                                    <span class="desc-icon">▶</span> Description
+                                </div>
+                                <div class="desc-content-edge" style="display:none;">
+                                    {{{edge.system.description}}}
+                                </div>
+                            </div>
+                        {{else}}
+                            <div class="item-display empty">Drop Edge here</div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{!-- Right Column – Actions --}}
+                <div class="right-column">
+                    <div class="actions-container">
+                        <button class="action-button" data-action="BOOKS">
+                            <span class="action-name">BOOKS 2, 3</span> <i class="fas fa-dice-d6"></i>
+                        </button>
+                        <button class="action-button" data-action="BOOTS">
+                            <span class="action-name">BOOTS 3, 4, 5</span> <i class="fas fa-dice-d6"></i>
+                        </button>
+                        <button class="action-button" data-action="BLADES">
+                            <span class="action-name">BLADES 4, 5, 6, 7</span> <i class="fas fa-dice-d6"></i>
+                        </button>
+                        <button class="action-button" data-action="BONES">
+                            <span class="action-name">BONES 5, 6, 7, 8, 9</span> <i class="fas fa-dice-d6"></i>
+                        </button>
+                        <button class="action-button" data-action="EFFECT">
+                            <span class="action-name">EFFECT</span> <i class="fas fa-dice-d6"></i>
+                        </button>
+                        <button class="action-button" data-action="CHAOS">
+                            <span class="action-name">CHAOS</span> <i class="fas fa-dice-d6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Conditions Tab --}}
+        <div class="tab-pane {{#if (eq activeTab "conditions")}}active{{/if}}" data-tab="conditions">
+            <div class="conditions-container">
+                <h2 class="conditions-title">Conditions</h2>
+                <div class="conditions-grid">
+                    {{!-- Row 1 --}}
+                    <div class="condition-square {{#if conditions.stressed}}active{{/if}}" data-key="stressed">
+                        <span class="condition-label">Stressed</span>
+                        <span class="condition-desc">No Key bonus. Disadvantaged on Books.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.tired}}active{{/if}}" data-key="tired">
+                        <span class="condition-label">Tired</span>
+                        <span class="condition-desc">Disadvantaged on Boots and Bones.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.hurt}}active{{/if}}" data-key="hurt">
+                        <span class="condition-label">Hurt</span>
+                        <span class="condition-desc">Disadvantaged on Blades.</span>
+                    </div>
+
+                    {{!-- Row 2 --}}
+                    <div class="condition-square {{#if conditions.hungry}}active{{/if}}" data-key="hungry">
+                        <span class="condition-label">Hungry</span>
+                        <span class="condition-desc">No Key bonus. Disadvantaged on Supply.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.burdened}}active{{/if}}" data-key="burdened">
+                        <span class="condition-label">Burdened</span>
+                        <span class="condition-desc">Fail on Crown. Disadvantaged on Downtime.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.veteran}}active{{/if}}" data-key="veteran">
+                        <span class="condition-label">Veteran</span>
+                        <span class="condition-desc">Take veteran.</span>
+                    </div>
+
+                    {{!-- Row 3 --}}
+                    <div class="condition-square {{#if conditions.marked}}active{{/if}}" data-key="marked">
+                        <span class="condition-label">Marked</span>
+                        <span class="condition-desc">Disadvantaged on Death's Door.</span>
+                    </div>
+                    <div class="condition-square {{#if conditions.wounded}}active{{/if}}" data-key="wounded">
+                        <span class="condition-label">Wounded</span>
+                        <span class="condition-desc">Disadvantaged. Roll Death's Door on Down.</span>
+                        <input class="wounded-detail" type="text" value="{{conditions.woundedDetail}}" placeholder="Details...">
+                    </div>
+                    <div class="condition-square {{#if conditions.down}}active{{/if}}" data-key="down">
+                        <span class="condition-label">Down</span>
+                        <span class="condition-desc">No actions except roll on Death's Door, need Aid.</span>
+                    </div>
+
+                    {{!-- Row 4 – Custom Conditions --}}
+                    <div class="custom-condition">
+                        <input class="custom-condition-name" data-index="1" type="text" value="{{conditions.custom1.name}}" placeholder="Condition Name">
+                        <div class="custom-condition-square">
+                            <textarea class="custom-condition-text" data-index="1" placeholder="Condition description...">{{conditions.custom1.text}}</textarea>
+                        </div>
+                    </div>
+                    <div class="custom-condition">
+                        <input class="custom-condition-name" data-index="2" type="text" value="{{conditions.custom2.name}}" placeholder="Condition Name">
+                        <div class="custom-condition-square">
+                            <textarea class="custom-condition-text" data-index="2" placeholder="Condition description...">{{conditions.custom2.text}}</textarea>
+                        </div>
+                    </div>
+                    <div class="custom-condition">
+                        <input class="custom-condition-name" data-index="3" type="text" value="{{conditions.custom3.name}}" placeholder="Condition Name">
+                        <div class="custom-condition-square">
+                            <textarea class="custom-condition-text" data-index="3" placeholder="Condition description...">{{conditions.custom3.text}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Notes Tab --}}
+        <div class="tab-pane {{#if (eq activeTab "notes")}}active{{/if}}" data-tab="notes">
+            <div class="notes-container">
+                <h2 class="notes-title">Notes</h2>
+                <textarea class="notes-editor" rows="12" style="width:100%; background: white; color: black;">{{system.notes}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>

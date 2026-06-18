@@ -1,0 +1,50 @@
+{
+  "id": "mazes",
+  "title": "Mazes RPG",
+  "description": "A custom system for Mazes RPG",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Your Name"
+    }
+  ],
+  "esmodules": ["mazes.mjs"],
+    "styles": [
+        "styles/base.css",
+        "styles/sheet-common.css",
+        "styles/character-sheet.css",
+        "styles/hazard-sheet.css",
+        "styles/item-sheet.css",
+        "styles/roll.css",
+        "styles/widget.css",
+        "styles/responsive.css"
+    ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "label": "Character"
+      },
+      "hazard": {
+        "label": "Hazard"
+      }
+    },
+    "Item": {
+      "role": {
+        "label": "Role"
+      },
+      "aspect": {
+        "label": "Aspect"
+      },
+      "class": {
+        "label": "Class"
+      },
+      "edge": {
+        "label": "Edge"
+      }
+    }
+  }
+}

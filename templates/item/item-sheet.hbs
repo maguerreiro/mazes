@@ -1,0 +1,41 @@
+{{!-- templates/item/item-sheet.hbs --}}
+
+<div class="mazes-item-sheet">
+    <div class="item-header">
+        <div class="item-icon-container">
+            <img class="item-icon" src="{{item.img}}" data-edit="img" width="48" height="48" alt="{{name}}">
+        </div>
+        <div class="item-name-container">
+            <label class="field-label">NAME</label>
+            <input class="item-name-input" type="text" value="{{name}}" placeholder="{{typeLabel}} Name">
+        </div>
+    </div>
+
+    <div class="item-body">
+        {{!-- Role fields --}}
+        {{#if (eq type "role")}}
+            <div class="form-group">
+                <label>Die Size</label>
+                <select class="die-size-select">
+                    {{#each dieSizes}}
+                        <option value="{{this}}" {{#if (eq this ../system.dieSize)}}selected{{/if}}>{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Hearts Max</label>
+                <input class="hearts-max-input" type="number" value="{{system.heartsMax}}" min="0">
+            </div>
+            <div class="form-group">
+                <label>Stars Max</label>
+                <input class="stars-max-input" type="number" value="{{system.starsMax}}" min="0">
+            </div>
+        {{/if}}
+
+        {{!-- Description for all types --}}
+        <div class="form-group description-group">
+            <label>Description</label>
+            <textarea class="desc-textarea" rows="6">{{system.description}}</textarea>
+        </div>
+    </div>
+</div>

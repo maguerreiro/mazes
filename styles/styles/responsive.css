@@ -1,0 +1,81 @@
+/* styles/responsive.css */
+
+@media (max-width: 700px) {
+    .mazes-sheet {
+        padding: 8px 10px;
+        max-height: calc(100vh - 100px);
+    }
+    .resources-bar {
+        gap: 4px;
+    }
+    .resource-square {
+        min-width: 60px;
+        padding: 4px 6px;
+    }
+    .resource-square .resource-value input[type="number"] {
+        width: 30px;
+        font-size: 12px;
+    }
+    .resource-square input[type="number"] {
+        width: 38px;
+        font-size: 12px;
+    }
+    .character-sheet .sheet-main {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .character-sheet .right-column {
+        flex: 1;
+    }
+    .actions-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .action-button {
+        flex: 1;
+        min-width: 80px;
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    .conditions-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    .vertical-tabs {
+        right: -30px;
+        top: 50px;
+    }
+    .vertical-tabs .tab-button {
+        font-size: 10px;
+        padding: 4px 6px;
+        min-height: 30px;
+    }
+    .edges-grid {
+        grid-template-columns: 1fr;
+    }
+    .mazes-widget {
+        min-width: 160px;
+        max-width: 220px;
+    }
+}
+
+@media (max-width: 450px) {
+    .conditions-grid {
+        grid-template-columns: 1fr;
+    }
+    .resource-square {
+        min-width: 50px;
+        flex: 1 0 auto;
+    }
+    .sheet-header {
+        flex-wrap: wrap;
+    }
+    .portrait-container {
+        width: 100%;
+        text-align: center;
+    }
+    .portrait {
+        width: 60px;
+        height: 60px;
+    }
+}

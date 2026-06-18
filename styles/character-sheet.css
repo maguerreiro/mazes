@@ -1,0 +1,331 @@
+/* styles/character-sheet.css */
+
+/* Main Layout */
+.character-sheet.mazes-sheet {
+    background: #000000 !important;
+}
+
+.character-sheet .sheet-main {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.character-sheet .left-column {
+    flex: 0 0 316px;          /* fixed width 312px */
+    min-width: 316px;         /* prevent shrinking */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.character-sheet .right-column {
+    flex: 0 0 315px;          /* fixed width 312px */
+    min-width: 315px;         /* prevent shrinking */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==== RESOURCE SQUARES – fixed width, no flexing ==== */
+.character-sheet .resources-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;  /* keep them left‑aligned */
+}
+.character-sheet .resources-bar .resource-square {
+    flex: 0 0 auto;          /* do not grow or shrink */
+    width: 100px;             /* fixed width – adjust as needed */
+    min-width: 100px;         /* prevent shrinking below this */
+    max-width: 100px;
+    background: #111;
+    border: 1px solid var(--mazes-border);
+    border-radius: 4px;
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+/* for lifestyle square – allow a bit more width if needed */
+.character-sheet .resources-bar .resource-square.lifestyle {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+
+/* Right column – align with left column top */
+.actions-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Actions */
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 0; 
+}
+.action-button {
+    background: #111;
+    border: 1px solid var(--mazes-border);
+    border-radius: 4px;
+    color: var(--mazes-text);
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+}
+.action-button:hover {
+    background: #1a1a1a;
+    border-color: #555;
+}
+.action-button:active {
+    background: #222;
+}
+.action-button .die-values {
+    font-size: 12px;
+    color: #888;
+    font-family: monospace;
+}
+.action-button i.fa-dice-d6 {
+    color: #666;
+    font-size: 14px;
+    margin-left: 4px;
+}
+.action-button:hover i.fa-dice-d6 {
+    color: #aaa;
+}
+.action-button.effect-button {
+    border-color: #2a2a4a;
+}
+.action-button.effect-button:hover {
+    border-color: #5a5a8a;
+}
+.action-button.chaos-button {
+    border-color: #4a2a2a;
+}
+.action-button.chaos-button:hover {
+    border-color: #8a5a5a;
+}
+
+/* Action button name – Ruslan Display */
+.action-button .action-name {
+    font-family: var(--mazes-font-display);
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--mazes-text);
+    letter-spacing: 0.5px;
+    margin-right: 6px;        /* small gap between name and numbers */
+}
+
+/* Conditions – unchanged */
+.conditions-container {
+    padding: 4px 0 8px 0;
+}
+.conditions-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--mazes-text);
+    letter-spacing: 1px;
+}
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 100%;
+}
+.condition-square {
+    background: #111;
+    border: 2px solid #333;
+    border-radius: 4px;
+    padding: 10px 8px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    text-align: center;
+    user-select: none;
+}
+.condition-square:hover {
+    border-color: #555;
+}
+.condition-square.active {
+    background: #333;
+    border-color: #888;
+}
+.condition-square .condition-label {
+    font-family: var(--mazes-font-display);
+    font-size: 14px;
+    color: var(--mazes-text);
+    margin-bottom: 4px;
+}
+.condition-square .condition-desc {
+    font-size: 11px;
+    color: #aaa;
+    line-height: 1.3;
+}
+.condition-square input[type="text"] {
+    margin-top: 4px;
+    width: 90%;
+    background: #222;
+    color: var(--mazes-text);
+    border: 1px solid #444;
+    font-size: 11px;
+    padding: 2px 4px;
+    text-align: center;
+}
+.condition-square input[type="text"]:focus {
+    border-color: #888;
+}
+
+.custom-condition {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.custom-condition-name {
+    width: 100%;
+    background: var(--mazes-input-bg);
+    color: var(--mazes-input-text);
+    border: 1px solid var(--mazes-border);
+    border-radius: 3px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-family: var(--mazes-font-display);
+    text-align: center;
+}
+.custom-condition-name:focus {
+    border-color: #888;
+    outline: none;
+}
+.custom-condition-square {
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 4px;
+    min-height: 70px;
+    padding: 4px;
+}
+.custom-condition-square textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 60px;
+    background: transparent;
+    color: var(--mazes-text);
+    border: none;
+    resize: vertical;
+    font-size: 12px;
+    padding: 4px;
+}
+.custom-condition-square textarea:focus {
+    outline: none;
+}
+.custom-condition-square textarea::placeholder {
+    color: #555;
+}
+
+/* Notes */
+.notes-container {
+    padding: 4px 0;
+}
+.notes-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 12px;
+    color: var(--mazes-text);
+}
+.notes-editor {
+    background: var(--mazes-input-bg);
+    color: var(--mazes-input-text);
+    border: 1px solid var(--mazes-border);
+    border-radius: 4px;
+    padding: 12px;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.notes-editor:focus {
+    outline: none;
+    border-color: #888;
+}
+.notes-editor p {
+    margin: 4px 0;
+}
+.notes-editor strong,
+.notes-editor b {
+    font-weight: bold;
+}
+.notes-editor em,
+.notes-editor i {
+    font-style: italic;
+}
+.notes-editor ul,
+.notes-editor ol {
+    padding-left: 24px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+    .character-sheet .sheet-main {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .character-sheet .left-column,
+    .character-sheet .right-column {
+        flex: 0 0 100%;
+    }
+    .actions-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .action-button {
+        flex: 1;
+        min-width: 80px;
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    .conditions-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    /* resource squares become more flexible on small screens */
+    .character-sheet .resources-bar .resource-square {
+        flex: 0 0 auto;
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+    }
+    .character-sheet .resources-bar .resource-square.lifestyle {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 450px) {
+    .conditions-grid {
+        grid-template-columns: 1fr;
+    }
+    .character-sheet .resources-bar .resource-square {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+    }
+    .character-sheet .resources-bar .resource-square.lifestyle {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+    }
+}

@@ -1,0 +1,50 @@
+{{!-- templates/widget.hbs --}}
+
+<div class="mazes-widget-container {{#if minimized}}minimized{{/if}}">
+    <div class="widget-header">
+        <span class="widget-title">Mazes</span>
+        <button class="widget-toggle" title="Toggle minimize">
+            {{#if minimized}}⤢{{else}}⤡{{/if}}
+        </button>
+    </div>
+
+    {{#unless minimized}}
+        <div class="widget-body">
+            {{!-- Darkness --}}
+            <div class="widget-section">
+                <div class="section-label">Darkness</div>
+                <div class="widget-control">
+                    <button class="widget-btn darkness-dec">−</button>
+                    <input class="widget-input" data-field="darkness" type="number" value="{{state.darkness}}" min="0">
+                    <button class="widget-btn darkness-inc">+</button>
+                    <span class="widget-status">{{darknessLabel}}</span>
+                </div>
+            </div>
+
+            {{!-- Treasure --}}
+            <div class="widget-section">
+                <div class="section-label">Treasure</div>
+                <div class="widget-control">
+                    <button class="widget-btn players-dec">−</button>
+                    <input class="widget-input" data-field="players" type="number" value="{{state.players}}" min="0" style="width:35px;">
+                    <button class="widget-btn players-inc">+</button>
+                    <span style="color:#aaa;margin:0 4px;">/</span>
+                    <button class="widget-btn treasure-dec">−</button>
+                    <input class="widget-input" data-field="treasure" type="number" value="{{state.treasure}}" min="0" style="width:35px;">
+                    <button class="widget-btn treasure-inc">+</button>
+                    <span class="widget-status">{{treasureLabel}}</span>
+                </div>
+            </div>
+
+            {{!-- Supply --}}
+            <div class="widget-section">
+                <div class="section-label">Supply</div>
+                <div class="widget-control">
+                    <button class="widget-btn supply-dec">−</button>
+                    <input class="widget-input" data-field="supply" type="number" value="{{state.supply}}" min="0">
+                    <button class="widget-btn supply-inc">+</button>
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+</div>

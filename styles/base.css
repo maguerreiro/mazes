@@ -1,0 +1,46 @@
+/* styles/base.css */
+@import url('https://fonts.googleapis.com/css2?family=Ruslan+Display&display=swap');
+
+:root {
+    --mazes-bg: #000000;
+    --mazes-text: #ffffff;
+    --mazes-input-bg: #ffffff;
+    --mazes-input-text: #000000;
+    --mazes-border: #333333;
+    --mazes-hover: #1a1a1a;
+    --mazes-scrollbar-thumb: #ffffff;
+    --mazes-scrollbar-track: transparent;
+    --mazes-font-display: 'Ruslan Display', cursive;
+}
+
+.mazes {
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    color: var(--mazes-text);
+    background: var(--mazes-bg);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Scrollbar for sheets */
+.mazes-sheet,
+.mazes-item-sheet {
+    overflow-y: auto;          /* keep vertical scroll */
+    overflow-x: visible;       /* allow tabs to protrude horizontally */
+    scrollbar-width: thin;
+    scrollbar-color: var(--mazes-scrollbar-thumb) var(--mazes-scrollbar-track);
+}
+.mazes-sheet::-webkit-scrollbar,
+.mazes-item-sheet::-webkit-scrollbar {
+    width: 4px;
+}
+.mazes-sheet::-webkit-scrollbar-track,
+.mazes-item-sheet::-webkit-scrollbar-track {
+    background: var(--mazes-scrollbar-track);
+}
+.mazes-sheet::-webkit-scrollbar-thumb,
+.mazes-item-sheet::-webkit-scrollbar-thumb {
+    background: var(--mazes-scrollbar-thumb);
+    border-radius: 2px;
+}
